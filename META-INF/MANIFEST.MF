@@ -1,11 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: GetStringLength
-Bundle-SymbolicName: getStringLength
+Bundle-Name: Get Length of Selected Text
+Bundle-SymbolicName: com.lyf.plugin.getStringLength;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.lyf.plugin.getStringLength.Activator
 Bundle-Vendor: lukeluke
-Require-Bundle: org.eclipse.ui,
+Require-Bundle: org.eclipse.jface.text;bundle-version="3.9.1",
+ org.eclipse.ui,
  org.eclipse.core.runtime
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: com.lyf.plugin.getStringLength
