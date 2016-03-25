@@ -3,12 +3,11 @@
 <plugin>
    <extension
          point="org.eclipse.ui.menus">
-      <menuContribution
-            locationURI="toolbar:org.eclipse.ui.trim.status">
-         <toolbar
-               id="selectedtextlength.toolbars.lengthInfo">
+      <menuContribution locationURI="toolbar:org.eclipse.ui.trim.status?after=org.eclipse.ui.StatusLine">
+         <toolbar id="selectedtextlength.toolbars.lengthInfo">
             <control
-                  class="com.lyf.plugin.getStringLength.SelectedTextInfoControlContribution">
+                  class="com.lyf.plugin.getStringLength.SelectedTextInfoControlContribution"
+                  id="com.lyf.plugin.getStringLength.SelectedTextInfoControlContribution">
             </control>
          </toolbar>
       </menuContribution>
