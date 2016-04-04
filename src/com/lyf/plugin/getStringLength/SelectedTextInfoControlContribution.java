@@ -1,21 +1,20 @@
 package com.lyf.plugin.getStringLength;
 
+import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.*;
 import org.eclipse.ui.menus.WorkbenchWindowControlContribution;
 
-public class SelectedTextInfoControlContribution extends
-		WorkbenchWindowControlContribution {
+public class SelectedTextInfoControlContribution 
+			extends WorkbenchWindowControlContribution implements ISelectionInfo {
+
+	private static final String SEL_FORMAT = "Sel : %d | %d";
+	
+	private final Agent agent = new Agent(this);
 
 	private Label length_label;
-	private int length = 0;
 	
-	private Agent agent = new Agent(this);
-
 	public SelectedTextInfoControlContribution() {
 	}
 
@@ -32,10 +31,10 @@ public class SelectedTextInfoControlContribution extends
 		layout.type = SWT.HORIZONTAL;
 		layout.spacing = 10;
 		comp.setLayout(layout);
-
+		
 		length_label = new Label(comp, SWT.LEFT);
-		length_label.setText(" Sel:                     ");
-
+		length_label.setText(String.format(SEL_FORMAT, 0, 0) + String.format(String.format("%%%ds", 10), " "));
+		
 		return comp;
 	}
 
@@ -51,13 +50,16 @@ public class SelectedTextInfoControlContribution extends
 		return true;
 	}
 
-	public void updateLength(int len) {
-		length = len;
+	@Override
+	public void updateSelection(final ITextSelection selection) {
+		final int len = selection.getLength();
+		final int rln = (selection.getEndLine() - selection.getStartLine());
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				length_label.setText(" Sel: "+ length);
+				length_label.setText(String.format(SEL_FORMAT, len, (rln > 0) ? rln + 1 : 0));
 			}
 		});
+		
 	}
 }

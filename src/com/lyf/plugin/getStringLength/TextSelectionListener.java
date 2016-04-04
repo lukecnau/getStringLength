@@ -7,13 +7,13 @@ import org.eclipse.ui.IWorkbenchPart;
 
 
 public class TextSelectionListener implements ISelectionListener {
-	private SelectedTextInfoControlContribution callback;
+	private ISelectionInfo callback;
 	
 	public TextSelectionListener() {
 		
 	}
 	
-	public void setCallback( SelectedTextInfoControlContribution callback ) {
+	public void setCallback( ISelectionInfo callback ) {
 		this.callback = callback;
 	}
 	
@@ -21,9 +21,8 @@ public class TextSelectionListener implements ISelectionListener {
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
 		
 		if ( selection instanceof ITextSelection ) {
-			ITextSelection t = (ITextSelection) selection;
 			if ( this.callback != null )
-				callback.updateLength(t.getLength());
+				callback.updateSelection((ITextSelection) selection);
 		}
 	}
 
