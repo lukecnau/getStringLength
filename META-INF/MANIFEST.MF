@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Get Length of Selected Text
 Bundle-SymbolicName: com.lyf.plugin.getStringLength;singleton:=true
-Bundle-Version: 1.0.1.qualifier
+Bundle-Version: 1.0.2.qualifier
 Bundle-Activator: com.lyf.plugin.getStringLength.Activator
 Bundle-Vendor: lukeluke
 Require-Bundle: org.eclipse.jface.text;bundle-version="3.9.1",

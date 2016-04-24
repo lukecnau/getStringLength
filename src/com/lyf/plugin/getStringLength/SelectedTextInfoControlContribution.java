@@ -7,7 +7,7 @@ import org.eclipse.swt.widgets.*;
 import org.eclipse.ui.menus.WorkbenchWindowControlContribution;
 
 public class SelectedTextInfoControlContribution 
-			extends WorkbenchWindowControlContribution implements ISelectionInfo {
+			extends WorkbenchWindowControlContribution implements IEditorSelectionInfo, IEditorFocusInfo {
 
 	private static final String SEL_FORMAT = "Sel : %d | %d";
 	
@@ -33,6 +33,7 @@ public class SelectedTextInfoControlContribution
 		comp.setLayout(layout);
 		
 		length_label = new Label(comp, SWT.LEFT);
+		length_label.setVisible(false);
 		length_label.setText(String.format(SEL_FORMAT, 0, 0) + String.format(String.format("%%%ds", 10), " "));
 		
 		return comp;
@@ -41,7 +42,6 @@ public class SelectedTextInfoControlContribution
 	@Override
 	public void dispose() {
 		agent.stop();
-
 		super.dispose();
 	}
 
@@ -57,9 +57,20 @@ public class SelectedTextInfoControlContribution
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
+				length_label.setVisible(true);
 				length_label.setText(String.format(SEL_FORMAT, len, (rln > 0) ? rln + 1 : 0));
 			}
 		});
 		
+	}
+
+	@Override
+	public void updateFocus(final boolean focused) {
+		Display.getDefault().asyncExec(new Runnable() {
+			@Override
+			public void run() {
+				length_label.setVisible(focused);
+			}
+		});
 	}
 }
