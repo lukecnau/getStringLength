@@ -24,6 +24,8 @@ public class SelectedTextInfoControlContribution
 
 	@Override
 	protected Control createControl(Composite parent) {
+		// Label small height bug - https://bugs.eclipse.org/bugs/show_bug.cgi?id=471313
+		parent.getParent().setRedraw(true);
 		agent.start(getWorkbenchWindow());
 
 		Composite comp = new Composite(parent, SWT.NONE);
@@ -54,11 +56,16 @@ public class SelectedTextInfoControlContribution
 	public void updateSelection(final ITextSelection selection) {
 		final int len = selection.getLength();
 		final int rln = (selection.getEndLine() - selection.getStartLine());
+		
+		//To calculate precisely the length and the lines.
+		final boolean lastnl = selection.getText().endsWith(System.lineSeparator());
+		final int crlflen = System.lineSeparator().length();
+		
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
 				length_label.setVisible(true);
-				length_label.setText(String.format(SEL_FORMAT, len, (rln > 0) ? rln + 1 : 0));
+				length_label.setText(String.format(SEL_FORMAT, len - (lastnl ? (rln+1)*crlflen : rln*crlflen), (len > 0) ? rln+1 : 0));
 			}
 		});
 		
