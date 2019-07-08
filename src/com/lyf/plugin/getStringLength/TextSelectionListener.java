@@ -7,13 +7,13 @@ import org.eclipse.ui.IWorkbenchPart;
 
 
 public class TextSelectionListener implements ISelectionListener {
-	private ISelectionInfo callback;
+	private IEditorSelectionInfo callback;
 	
 	public TextSelectionListener() {
 		
 	}
 	
-	public void setCallback( ISelectionInfo callback ) {
+	public void setCallback( IEditorSelectionInfo callback ) {
 		this.callback = callback;
 	}
 	
