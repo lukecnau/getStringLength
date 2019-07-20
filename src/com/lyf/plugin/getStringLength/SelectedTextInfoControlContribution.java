@@ -57,9 +57,10 @@ public class SelectedTextInfoControlContribution
 		final int len = selection.getLength();
 		final int rln = (selection.getEndLine() - selection.getStartLine());
 		
-		//To calculate precisely the length and the lines.
-		final boolean lastnl = selection.getText().endsWith(System.lineSeparator());
+		//To calculate precisely the length and the lines. removed the crlf
+		String tmptext = selection.getText();
 		final int crlflen = System.lineSeparator().length();
+		final boolean lastnl = (null != tmptext) ? tmptext.endsWith(System.lineSeparator()) : false;
 		
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
