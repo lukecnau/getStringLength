@@ -16,3 +16,5 @@ To install the plugin simply download the jar file and place it inside the Eclip
  * [Download link version 1.0.2](https://github.com/aleroot/getStringLength/blob/master/dist/plugins/com.lyf.plugin.getStringLength_1.0.2.201604211351.jar)
 
  * [Download link version 1.0.3](https://github.com/lukecnau/getStringLength/blob/master/dist/plugins/com.lyf.plugin.getStringLength_1.0.3.201907090234.jar)
+ 
+ * [Download link version 1.0.4](https://github.com/lukecnau/getStringLength/blob/master/dist/plugins/com.lyf.plugin.getStringLength_1.0.4.201907201141.jar)
